@@ -1,0 +1,78 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+add_newline = false
+command_timeout = 1200
+format = """
+$username$hostname$directory$git_branch$git_status$kubernetes$aws
+$character
+"""
+right_format = "$cmd_duration $time $status"
+
+[character]
+success_symbol = "[>](bold green) "
+error_symbol = "[>](bold red) "
+vicmd_symbol = "[V](bold yellow) "
+
+[cmd_duration]
+format = "[took $duration](bold yellow)"
+min_time = 500
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "dim white"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = false
+style = "bold cyan"
+read_only = " ro"
+format = "[$path]($style)[$read_only]($style) "
+
+[git_branch]
+symbol = "git "
+style = "bold purple"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "bold red"
+format = "[$all_status$ahead_behind]($style) "
+conflicted = "conf${count}"
+ahead = "ahead${count}"
+behind = "behind${count}"
+diverged = "div${ahead_count}/${behind_count}"
+stashed = "stash${count}"
+modified = "mod${count}"
+staged = "stg${count}"
+renamed = "ren${count}"
+deleted = "del${count}"
+untracked = "untrk${count}"
+up_to_date = "ok"
+
+[kubernetes]
+symbol = "k8s "
+style = "bold green"
+format = "[$symbol$context(::$namespace)]($style) "
+disabled = false
+
+[aws]
+symbol = "aws "
+style = "bold blue"
+format = "[$symbol($profile)(@$region)]($style) "
+
+[status]
+disabled = false
+style = "bold red"
+format = "[exit $status]($style) "
+map_symbol = true
+pipestatus = true
+
+[username]
+show_always = true
+style_user = "bold blue"
+format = "[$user]($style) "
+
+[hostname]
+ssh_only = false
+style = "bold blue"
+format = "[$hostname]($style) "

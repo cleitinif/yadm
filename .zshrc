@@ -18,8 +18,6 @@ plugins=(git kubectl aws zsh-autosuggestions zsh-syntax-highlighting terraform)
 
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
-
 source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
@@ -44,3 +42,8 @@ fi
 eval "$(mise activate zsh)"
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# Load Starship prompt when available.
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
